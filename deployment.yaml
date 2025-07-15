@@ -14,9 +14,12 @@ spec:
         app: start-pressure-controller
     spec:
       serviceAccountName: taint-controller-sa
-      environment:
-        - name: START_PRESSURE_THRESHOLD
-          value: "3"
+      containers:
+        - name: controller
+          image: location0717/start-pressure-controller:latest
+          env:
+            - name: START_PRESSURE_THRESHOLD
+              value: "3"
       resources:
         limits:
           cpu: "100m"
@@ -24,9 +27,6 @@ spec:
         requests:
           cpu: "50m"
           memory: "64Mi"
-      containers:
-        - name: controller
-          image: your-registry/start-pressure-controller:latest
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
