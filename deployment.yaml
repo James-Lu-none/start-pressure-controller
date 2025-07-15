@@ -14,6 +14,13 @@ spec:
         app: start-pressure-controller
     spec:
       serviceAccountName: taint-controller-sa
+      resources:
+        limits:
+          cpu: "100m"
+          memory: "128Mi"
+        requests:
+          cpu: "50m"
+          memory: "64Mi"
       containers:
         - name: controller
           image: your-registry/start-pressure-controller:latest
