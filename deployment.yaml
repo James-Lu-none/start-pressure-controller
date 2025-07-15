@@ -35,7 +35,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["pods", "nodes"]
-    verbs: ["get", "list", "watch", "patch"]
+    verbs: ["get", "list", "watch", "update", "patch"]
 
 ---
 apiVersion: v1
