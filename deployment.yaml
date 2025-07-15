@@ -17,9 +17,10 @@ spec:
       containers:
         - name: controller
           image: location0717/start-pressure-controller:latest
+          imagePullPolicy: Always
           env:
             - name: START_PRESSURE_THRESHOLD
-              value: "3"
+              value: "2"
       resources:
         limits:
           cpu: "100m"
