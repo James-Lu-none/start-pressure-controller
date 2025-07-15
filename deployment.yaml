@@ -14,6 +14,9 @@ spec:
         app: start-pressure-controller
     spec:
       serviceAccountName: taint-controller-sa
+      environment:
+        - name: START_PRESSURE_THRESHOLD
+          value: "3"
       resources:
         limits:
           cpu: "100m"

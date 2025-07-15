@@ -11,11 +11,27 @@ import (
 	"k8s.io/client-go/rest"
 )
 
-const (
+import (
+	"os"
+	"strconv"
+)
+
+var (
 	threshold   = 5
 	taintKey    = "start-pressure"
 	taintEffect = v1.TaintEffectNoSchedule
 )
+
+func init() {
+	if val, ok := os.LookupEnv("START_PRESSURE_THRESHOLD"); ok {
+		if t, err := strconv.Atoi(val); err == nil {
+			threshold = t
+			fmt.Printf("Using threshold from environment variable: %d\n", threshold)
+		}
+	} else {
+		fmt.Printf("Using default threshold: %d\n", threshold)
+	}
+}
 
 func main() {
 	config, err := rest.InClusterConfig()
